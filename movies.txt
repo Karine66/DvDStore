@@ -7,3 +7,5 @@ Interstellar;science fiction
 Interstellar;science fiction
 la grande vadrouille ;comedy
 the flash;science fiction
+Joker;drame
+superman;science fiction
