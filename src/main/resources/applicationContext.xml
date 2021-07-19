@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="fileMovieRepository" class="com.mycompany.dvdstore.repository.FileMovieRepository"/>
-    <bean id="defaultMovieService" class="com.mycompany.dvdstore.service.DefaultMovieService">
-    <property name="movieRepository" ref="fileMovieRepository"/>
-    </bean>
-    <bean id="movieController" class="com.mycompany.dvdstore.controller.MovieController">
-        <property name="movieService" ref="defaultMovieService"/>
-    </bean>
+
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <context:component-scan base-package="com.mycompany.dvdstore.repository.file"/>
+    <context:component-scan base-package="com.mycompany.dvdstore.controller"/>
+    <context:component-scan base-package="com.mycompany.dvdstore.service"/>
+
+<!--    <bean id="fileMovieRepository" class="com.mycompany.dvdstore.repository.file.FileMovieRepository">-->
+<!--&lt;!&ndash;        <property name="file" value="movies.csv"/>&ndash;&gt;-->
+<!--    </bean>-->
+<!--    <bean id="defaultMovieService" class="com.mycompany.dvdstore.service.DefaultMovieService">-->
+<!--&lt;!&ndash;    <property name="movieRepository" ref="fileMovieRepository"/>&ndash;&gt;-->
+<!--    </bean>-->
+<!--    <bean id="movieController" class="com.mycompany.dvdstore.controller.MovieController">-->
+<!--&lt;!&ndash;        <property name="movieService" ref="defaultMovieService"/>&ndash;&gt;-->
+<!--    </bean>-->
 
 </beans>
