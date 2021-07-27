@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class DefaultMovieService implements MovieServiceInterface {
@@ -31,4 +33,12 @@ public class DefaultMovieService implements MovieServiceInterface {
     public List<Movie> getMovieList() {
         return movieRepository.list();
     }
+
+    @Override
+    public Movie getMovieById(long id) {
+        return movieRepository.getById(id);
+    }
+
+
 }
+

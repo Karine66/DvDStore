@@ -22,4 +22,10 @@ private static List<Movie> movies = new ArrayList<>();
         return movies;
     }
 
+//@Override
+    public Movie getById(long id) {
+        return movies.stream().
+                filter(m -> m.getId()==id).
+                findFirst().get();
+    }
 }
