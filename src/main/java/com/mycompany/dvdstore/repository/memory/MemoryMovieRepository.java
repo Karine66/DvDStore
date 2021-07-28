@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@Repository
-public class MemoryMovieRepository {
+public class MemoryMovieRepository implements MovieRepositoryInterface {
 
-    private MovieRepositoryInterface movieRepositoryInterface;
+  public static long lastId=0L;
 private static List<Movie> movies = new ArrayList<>();
 
     public void add(Movie movie) {
+        movie.setId(lastId++);
         movies.add(movie);
         System.out.println("The movie "+movie.getTitle()+" has been added.");
     }
@@ -22,7 +23,7 @@ private static List<Movie> movies = new ArrayList<>();
         return movies;
     }
 
-//@Override
+  @Override
     public Movie getById(long id) {
         return movies.stream().
                 filter(m -> m.getId()==id).

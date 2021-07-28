@@ -16,10 +16,14 @@ public class FileMovieRepository implements MovieRepositoryInterface {
     private File file;
 
     public void add(Movie movie){
+
+        long lastId=list().stream().map(Movie::getId).max(Long::compare).orElse(0L);
+        movie.setId(lastId+1);
+
         FileWriter writer;
         try{
             writer=new FileWriter(file,true);
-            writer.write(movie.getTitle()+";"+movie.getGender()+"\n");
+            writer.write(movie.getId()+";"+movie.getTitle()+";"+movie.getGender()+";"+movie.getDescription()+"\n");
             writer.close();
         }
         catch (IOException e){
@@ -42,8 +46,6 @@ public class FileMovieRepository implements MovieRepositoryInterface {
                 movie.setGender(allProperties[2]);
                 movies.add(movie);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
@@ -53,7 +55,7 @@ public class FileMovieRepository implements MovieRepositoryInterface {
         return movies;
     }
 
-//    @Override
+    @Override
     public Movie getById(long id) {
         final Movie movie = new Movie();
         movie.setId(id);
