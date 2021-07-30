@@ -24,10 +24,11 @@ public class DefaultMovieService implements MovieServiceInterface {
 
 
 
-    public void registerMovie(Movie movie) {
+    public Movie registerMovie(Movie movie) {
 //   movieRepository.add(movie);
 //    goLiveMovieRepository.add(movie);
         movieRepository.add(movie);
+        return movie;
     }
     @Override
     public List<Movie> getMovieList() {
