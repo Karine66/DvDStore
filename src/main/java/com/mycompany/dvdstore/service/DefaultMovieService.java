@@ -27,17 +27,16 @@ public class DefaultMovieService implements MovieServiceInterface {
     public Movie registerMovie(Movie movie) {
 //   movieRepository.add(movie);
 //    goLiveMovieRepository.add(movie);
-        movieRepository.add(movie);
-        return movie;
+        return movieRepository.save(movie);
     }
     @Override
-    public List<Movie> getMovieList() {
-        return movieRepository.list();
+    public Iterable<Movie> getMovieList() {
+        return movieRepository.findAll();
     }
 
     @Override
-    public Movie getMovieById(long id) {
-        return movieRepository.getById(id);
+    public Movie getMovieById(Long id) {
+        return movieRepository.findById(id).orElseThrow();
     }
 
 
