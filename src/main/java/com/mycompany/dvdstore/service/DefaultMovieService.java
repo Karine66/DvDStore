@@ -36,7 +36,17 @@ public class DefaultMovieService implements MovieServiceInterface {
 
     @Override
     public Movie getMovieById(Long id) {
-        return movieRepository.findById(id).orElseThrow();
+        Optional<Movie> optionalMovie=movieRepository.findById(id);
+        if (optionalMovie.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        Movie movie=optionalMovie.get();
+
+        movie.getReviews().forEach(review ->
+                review.setMovie(null)
+        );
+
+        return movie;
     }
 
 
